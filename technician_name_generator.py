@@ -6,7 +6,7 @@ def generate_technician_names(count=100):
     "Emily", "Michael", "Sarah", "David", "Ashley", "Matthew", "Jessica", "Daniel", "Sophia", "Vergil",
     "Olivia", "Benjamin", "Emma", "Liam", "Ava", "Noah", "Isabella", "Lucas", "Mia", "Mason",
     "Amelia", "Dante", "Charlotte", "Elijah", "Harper", "Henry", "Evelyn", "Oliver", "Abigail", "James",
-    "Gustavo", "Sabrina", "Guilherme", "Mauricio", "Daniel", "William", "Hannibal", "Will", "Michael", "Elizabeth"
+    "Gustavo", "Sabrina", "Guilherme", "Mauricio", "Daniel", "William", "Hannibal", "Will", "Michael", "Elizabeth", "Leon"
 ]
 
     last_names = [
@@ -14,7 +14,7 @@ def generate_technician_names(count=100):
     "Lopez", "Gonzalez", "Wilson", "Anderson", "Thomas", "Taylor", "Moore", "Jackson", "Martin", "Lee",
     "Perez", "Thompson", "White", "Harris", "Sanchez", "Clark", "Ramirez", "Lewis", "Robinson", "Walker",
     "Young", "Allen", "King", "Wright", "Scott", "Torres", "Nguyen", "Hill", "Flores", "Green", "Adams", 
-    "Tascheri", "Suares", "Afton", "Lecter", "Graham", "Brito", "Coutinho", "do Valle"
+    "Tascheri", "Suares", "Afton", "Lecter", "Graham", "Brito", "Coutinho", "do Valle", "Kennedy"
 ]
     
     technicians = []
@@ -25,6 +25,3 @@ def generate_technician_names(count=100):
         technicians.append(f"{first_name} {last_name}")
     
     return technicians
-
-#   Gerar um diretório de 100 técnicos
-technician_directory = generate_technician_names(100)

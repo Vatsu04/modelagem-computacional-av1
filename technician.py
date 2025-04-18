@@ -17,6 +17,18 @@ class Technician:
 
     def __repr__(self):
         return f"Technician(ID={self.tech_id}, Name={self.tech_name}, Busy={self.busy})"
+    
+    def work_on_call(self, call, resolve_time):
+        """
+        Simula o trabalho do técnico em um chamado.
+        :param call: Objeto chamado.
+        :param resolve_time: Tempo necessário para resolver o chamado.
+        """
+        self.busy = True
+        print(f"{self.env.now}: Técnico {self.technician.tech_name} começou a trabalhar no chamado {call.call_id}")
+        yield self.env.timeout(resolve_time)  # Aguarda o tempo de resolução do chamado
+        self.busy = False
+        print(f"{self.env.now}: Técnico {self.technician.tech_name} finalizou o chamado {call.call_id}")
 
 # Generate a directory of 100 technicians with unique random names and IDs
 def generate_technician_directory(count=100):
