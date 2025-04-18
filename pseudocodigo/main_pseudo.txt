@@ -1,0 +1,11 @@
+IMPORTAR simpy
+IMPORTAR random
+IMPORTAR numpy COMO np
+IMPORTAR matplotlib.pyplot COMO plt
+IMPORTAR pandas COMO pd
+IMPORTAR env COMO env
+
+// Criando o ambiente de simulação
+env <- simpy.Environment()
+env.now <- 0
+env.process(env.now)

@@ -1,0 +1,24 @@
+IMPORTAR env COMO env
+
+Classe Call:
+    VARIAVEL call_id_counter <- 0
+
+    METODO CONSTRUTOR Call(env, call_type, call_wait):
+        self.env <- env
+        Call.call_id_counter <- Call.call_id_counter + 1 // ID Chamado
+        self.call_id <- Call.call_id_counter 
+        self.call_tech <- self.define_tech() // Pega o ID do tecnico
+        self.call_time <- env.now() // Tempo criação do chamado 
+        self.call_type <- call_type // Tipo de chamado
+        self.call_wait <- call_wait // Tempo de achar um técnico disponível
+        self.start_time <- env.now // Tempo de espera para atender o chamado
+        self.end_time <- Nulo
+    FIM METODO CONSTRUTOR
+    
+    METODO close(self)
+        self.end_time <- self.env.now
+    FIM METODO
+    
+    METODO define_tech(self, id):
+        RETORNA env.technicians[id].tech_name // Retorna o nome do tecnico de acordo com o ID dele.
+    FIM METODO
