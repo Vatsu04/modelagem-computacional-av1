@@ -1,0 +1,7 @@
+CLASSE Technician
+    METODO CONSTRUTOR Technician(self, name, id):
+        self.tech_name <- name // Nome Tecnico
+        self.tech_id <- id // Id Tecnico
+        self.busy <- Falso // Disponibilidade do Tecnico
+        self.current_call = Nulo // Chamado atual 
+        self.calls <- [] // Lista dos chamados que o tecnico atendeu
