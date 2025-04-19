@@ -42,3 +42,12 @@ class Call:
         """
         now = datetime.now()
         return now.strftime("%H:%M:%S")
+    
+    def resolve(self, resolve_time):
+        """
+        Simula o tempo necessário para resolver o chamado.
+        :param resolve_time: Tempo para resolver o chamado.
+        """
+        yield self.env.timeout(resolve_time)
+        self.end_time = self.env.now  # Registra o horário de término do chamado
+        print(f"{self.env.now}: Chamado {self.call_id} resolvido por {self.call_tech}.")
