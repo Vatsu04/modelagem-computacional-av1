@@ -38,8 +38,9 @@ class Technician:
         """
         self.busy = True
         self.current_call = call
-        print(f"{self.format_time(self.env.now)}- Técnico {self.tech_name} ({self.gender}) começou a trabalhar no chamado {call.call_id}")
+        tecnico_ou_tecnica = "Técnica" if self.gender == "Female" else "Técnico"
+        print(f"{self.format_time(self.env.now)}- {tecnico_ou_tecnica} {self.tech_name}  começou a trabalhar no chamado {call.call_id}")
         yield self.env.timeout(resolve_time)  # Aguarda o tempo necessário para resolver o chamado
         self.busy = False
         self.current_call = None
-        print(f"{self.format_time(self.env.now)}- Técnico {self.tech_name} ({self.gender}) finalizou o chamado {call.call_id}")
+        print(f"{self.format_time(self.env.now)}- {tecnico_ou_tecnica} {self.tech_name}  finalizou o chamado {call.call_id}")
