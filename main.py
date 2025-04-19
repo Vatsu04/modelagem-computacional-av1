@@ -19,6 +19,14 @@ technician_pool = [Technician.Technician(env, tech) for tech in technicians]  # 
 call_log = []
 
 
+# Função para formatar o tempo no formato HH:MM:SS
+def format_time(env_time):
+    from datetime import datetime, timedelta
+    start_time = datetime.now().replace(second=0, microsecond=0)  # Ponto de início da simulação
+    simulation_time = start_time + timedelta(seconds=env_time)
+    return simulation_time.strftime("%H:%M:%S")
+
+
 # Processo para gerar chamados
 def call_generator(env, call_log, technician_pool):
     call_id = 0
@@ -29,7 +37,7 @@ def call_generator(env, call_log, technician_pool):
         priority = random.randint(1, 4)  # Define uma prioridade aleatória para o chamado
         new_call = Call.Call(env, call_id, priority)  # Usa a classe Call do módulo Call
         call_log.append(new_call)  # Adiciona o chamado ao log
-        print(f"{env.get_now()}: Novo chamado criado com ID {call_id} e prioridade {priority}")
+        print(f"{format_time(env.now)}: Novo chamado criado com ID {call_id} e prioridade {priority}")
         env.process(assign_call(env, new_call, technician_pool))  # Processa a atribuição do chamado
 
 
@@ -38,12 +46,13 @@ def assign_call(env, call, technician_pool):
     # Verifica se há técnicos disponíveis
     available_tech = next((tech for tech in technician_pool if not tech.busy), None)
     if available_tech:
+        call.assign_tech(available_tech)  # Atualiza o chamado com o técnico disponível
         resolve_time = random.randint(5, 15)  # Tempo aleatório para resolver o chamado
         env.process(available_tech.work_on_call(call, resolve_time))  # Técnico trabalha no chamado
         yield env.process(call.resolve(resolve_time))  # Simula a resolução do chamado
-        print(f"{env.get_now()}: Chamado {call.call_id} resolvido.")
+        print(f"{format_time(env.now)}: Chamado {call.call_id} resolvido por {call.call_tech}.")
     else:
-        print(f"{env.get_now()}: Chamado {call.call_id} aguardando técnico disponível.")
+        print(f"{format_time(env.now)}: Chamado {call.call_id} aguardando técnico disponível.")
 
 
 # Inicia o gerador de chamados
@@ -54,9 +63,15 @@ env.run(until=SIM_DURATION)
 
 # Análise pós-simulação
 resolved_calls = [call for call in call_log if call.end_time is not None]
-average_response_time = np.mean([call.end_time - call.start_time for call in resolved_calls])
+average_response_time = np.mean(
+    [(call.end_time - call.start_time) for call in resolved_calls]
+)
 
+from datetime import timedelta
+
+# Converte o tempo médio (em segundos) para o formato HH:MM:SS
+average_response_time_formatted = str(timedelta(seconds=average_response_time))
 print("\n--- RESULTADOS DA SIMULAÇÃO ---")
-print(f"Tempo médio de resposta: {average_response_time:.2f} unidades de tempo")
+print(f"Tempo médio de resposta: {average_response_time_formatted}")
 print(f"Total de chamados resolvidos: {len(resolved_calls)}")
 print(f"Chamados não resolvidos: {len(call_log) - len(resolved_calls)}")
