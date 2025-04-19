@@ -1,12 +1,12 @@
 import env as Env
 from datetime import datetime, timedelta
-from generate_caller_names import generate_ticket_opener_names
+from name_generator import generate_ticket_opener_names
 import random
 
 
 class Call:
     call_id_counter = 0  # Contador global para atribuir IDs únicos aos chamados
-    caller_names = generate_ticket_opener_names(100)  
+    caller_data = generate_ticket_opener_names(100)  # Generate names with genders
 
     def __init__(self, env, call_type, call_wait):
         """
@@ -15,16 +15,16 @@ class Call:
         :param call_type: Tipo de chamado (Prioridades: 1- Baixa, 2 - Média, 3 - Alta, 4 - Crítica).
         :param call_wait: Tempo de espera para um técnico ficar disponível.
         """
-        self.caller_name = random.choice(Call.caller_names)  # Nome do chamador gerado aleatoriamente
         self.env = env  # O ambiente de simulação
         Call.call_id_counter += 1  # Incrementa o contador de IDs
         self.call_id = Call.call_id_counter  # Atribui um ID único ao chamado
+        self.caller_name, self.caller_gender = random.choice(Call.caller_data)  # Randomly assign name and gender
         self.call_tech = None  # Técnico ainda não atribuído ao chamado
         self.call_time = self.format_time(env.now)  # Tempo de criação do chamado
         self.call_type = call_type  # Tipo de prioridade do chamado
         self.call_wait = call_wait  # Tempo de espera até um técnico atender o chamado
         self.start_time = 0.00  # Tempo em que o técnico começa a atender o chamado
-        self.end_time = 0.00 # Tempo em que o chamado é fechado
+        self.end_time = 0.00  # Tempo em que o chamado é fechado
 
     @staticmethod
     def format_time(env_time):

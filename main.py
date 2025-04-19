@@ -3,18 +3,21 @@ import numpy as np
 import call as Call
 import technician as Technician
 from env import Environment  # Import your custom Environment class
+from name_generator import generate_ticket_opener_names, generate_technician_names
 
 # Parâmetros da simulação
 SIM_DURATION = 100  # Duração da simulação (em unidades de tempo, ex.: minutos)
 CALL_ARRIVAL_RATE = 2  # Taxa média de chegada de chamados (chamados por unidade de tempo)
 
 # Gera o diretório de técnicos
-technicians = Technician.generate_technician_names(10)  # Simulando com 10 técnicos
+technicians = generate_technician_names(10)  # Simulando com 10 técnicos
+callers = generate_ticket_opener_names(10)  # Simulando com 10 chamadores
+
 
 # Inicializa o ambiente do SimPy
 env = Environment()  # Using your custom Environment class
 technician_pool = [Technician.Technician(env, tech) for tech in technicians]  # Cria um pool de técnicos
-
+caller_pool = [Call.Call(env, caller, random.randint(1, 10)) for caller in callers]  # Cria um pool de chamadores
 # Lista para registrar os chamados
 call_log = []
 
@@ -35,9 +38,17 @@ def call_generator(env, call_log, technician_pool):
         yield env.timeout(random.expovariate(CALL_ARRIVAL_RATE))
         call_id += 1
         priority = random.randint(1, 4)  # Define uma prioridade aleatória para o chamado
+        if(priority ==1):
+            priority = "Baixa"
+        elif(priority ==2):
+            priority = "Média"
+        elif(priority ==3):
+            priority = "Alta"
+        else:
+            priority = "Crítica"
         new_call = Call.Call(env, call_id, priority)  # Usa a classe Call do módulo Call
         call_log.append(new_call)  # Adiciona o chamado ao log
-        print(f"{format_time(env.now)}: Novo chamado criado com ID {call_id} e prioridade {priority}")
+        print(f"{format_time(env.now)}- Novo chamado criado com ID {call_id} e prioridade {priority}")
         env.process(assign_call(env, new_call, technician_pool))  # Processa a atribuição do chamado
 
 
@@ -50,9 +61,12 @@ def assign_call(env, call, technician_pool):
         resolve_time = random.randint(5, 15)  # Tempo aleatório para resolver o chamado
         env.process(available_tech.work_on_call(call, resolve_time))  # Técnico trabalha no chamado
         yield env.process(call.resolve(resolve_time))  # Simula a resolução do chamado
-        print(f"{format_time(env.now)}: Chamado {call.call_id} resolvido por {call.call_tech}.")
+        
+        # Escolhe o termo correto com base no gênero do técnico
+        tecnico_ou_tecnica = "Técnica" if available_tech.gender == "Female" else "Técnico"
+        print(f"{format_time(env.now)}- Chamado {call.call_id} resolvido por {tecnico_ou_tecnica} {call.call_tech}.")
     else:
-        print(f"{format_time(env.now)}: Chamado {call.call_id} aguardando técnico disponível.")
+        print(f"{format_time(env.now)}- Chamado {call.call_id} aguardando técnico disponível.")
 
 
 # Inicia o gerador de chamados
