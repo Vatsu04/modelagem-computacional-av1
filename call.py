@@ -25,7 +25,10 @@ class Call:
         self.call_wait = call_wait  # Tempo de espera até um técnico atender o chamado
         self.start_time = 0.00  # Tempo em que o técnico começa a atender o chamado
         self.end_time = 0.00  # Tempo em que o chamado é fechado
-        self.call_title = call_title
+        self.call_title = call_title # Título do chamado
+        self.deadline =  self.definir_prazo() #Prazo de atendimento (3 a 40 minutos) 
+        self.unresolved = False  # Indica se o chamado foi resolvido ou não
+        self.tech_responsavel = False # Indica se um chamado foi atribuído a um técnico
 
     @staticmethod
     def format_time(env_time):
@@ -62,3 +65,23 @@ class Call:
     def mark_unresolved(self):
         """Marca o chamado como não resolvido."""
         self.unresolved = True
+    
+    def definir_prazo(self):
+        """
+        Define o prazo de atendimento do chamado baseado na prioridade.
+        """
+        if self.call_type == "Baixa":
+            return random.randint(3600, 7200)  # 1 a 2 horas
+        elif self.call_type == "Média":
+            return random.randint(1800, 3600)  # 30 minutos a 1 hora
+        elif self.call_type == "Alta":
+            return random.randint(900, 1800)  # 15 a 30 minutos
+        else:  # Crítica
+            return random.randint(600, 900)  # 10 a 15 minutos
+    
+    def definir_tecnico(self):
+        """
+        Define o técnico responsável pelo chamado.
+        """
+        self.tech_responsavel = True
+        return self.tech_responsavel

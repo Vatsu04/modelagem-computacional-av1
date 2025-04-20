@@ -31,8 +31,8 @@ def realistic_call_interval():
     Gera um intervalo de tempo realista entre a chegada de chamados.
     Combina distribuições exponenciais com um intervalo mínimo.
     """
-    min_interval = 5  # Intervalo mínimo de 5 segundos
-    interval = random.expovariate(1) * 20  # Média de 20 segundos
+    min_interval = 50  # Intervalo mínimo de 50 segundos
+    interval = random.expovariate(1 / 60)  # Média de 1 minuto
     return max(min_interval, interval)  # Garante o intervalo mínimo
 
 
@@ -43,15 +43,15 @@ def realistic_resolution_time(priority):
     :return: Tempo de resolução em segundos.
     """
     if priority == "Baixa":
-        mean, std_dev = 300, 60  # Média de 5 minutos com desvio padrão de 1 minuto
-    elif priority == "Média":
         mean, std_dev = 240, 45  # Média de 4 minutos
-    elif priority == "Alta":
+    elif priority == "Média":
         mean, std_dev = 180, 30  # Média de 3 minutos
-    elif priority == "Crítica":
+    elif priority == "Alta":
         mean, std_dev = 120, 20  # Média de 2 minutos
+    elif priority == "Crítica":
+        mean, std_dev = 90, 15   # Média de 1,5 minuto
     else:
-        mean, std_dev = 300, 60  # Default case
+        mean, std_dev = 240, 45  # Default case
     return max(60, random.gauss(mean, std_dev))  # Garante que o tempo seja no mínimo 1 minuto
 
 
@@ -60,4 +60,6 @@ def technician_rest_time():
     Retorna um tempo de descanso aleatório para o técnico entre os chamados.
     :return: Tempo de descanso em segundos.
     """
-    return random.uniform(60, 300)  # Descanso de 1 a 5 minutos
+    rest_time = random.uniform(60, 180)  # Descanso de 1 a 3 minutos
+    print(f"Debug: Tempo de descanso definido como {rest_time:.2f} segundos.")
+    return rest_time
