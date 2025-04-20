@@ -40,7 +40,7 @@ def generate_technician_names(count=100):
         ("Taylor", "Female"), ("Morgan", "Male"), ("Casey", "Female"), ("Jamie", "Female"),
         ("Emily", "Female"), ("Michael", "Male"), ("Sarah", "Female"), ("David", "Male"),
         ("Ashley", "Female"), ("Gustavo", "Male"), ("Lucas", "Male"), ("Guilherme", "Male"), ("Sabrina", "Female"),
-        ("Hannibal", "Male"), ("Samuel", "Male"), ("Clarice", "Female"), ("Will", "Female")
+        ("Hannibal", "Male"), ("Samuel", "Male"), ("Clarice", "Female"), ("Will", "Female"), ("Geraldo", "Male")
     ]
 
     last_names = [
@@ -48,7 +48,7 @@ def generate_technician_names(count=100):
     "Lopez", "Gonzalez", "Wilson", "Anderson", "Thomas", "Taylor", "Moore", "Jackson", "Martin", "Lee",
     "Perez", "Thompson", "White", "Harris", "Sanchez", "Clark", "Ramirez", "Lewis", "Robinson", "Walker",
     "Young", "Allen", "King", "Wright", "Scott", "Torres", "Nguyen", "Hill", "Flores", "Green", "Adams", 
-    "Tascheri", "Suares", "Afton", "Lecter", "Graham", "Brito", "Coutinho", "do Valle", "Kennedy"
+    "Tascheri", "Suares", "Afton", "Lecter", "Graham", "Brito", "Coutinho", "do Valle", "Kennedy", "Teske"
 ]
 
     technicians = []
