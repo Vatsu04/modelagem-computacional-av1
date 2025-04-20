@@ -8,7 +8,7 @@ class Call:
     call_id_counter = 0  # Contador global para atribuir IDs únicos aos chamados
     caller_data = generate_ticket_opener_names(100)  # Generate names with genders
 
-    def __init__(self, env, call_type, call_wait):
+    def __init__(self, env, call_type, call_wait, call_title):
         """
         Inicializa um objeto Call (Chamado).
         :param env: O ambiente de simulação (Env).
@@ -25,6 +25,7 @@ class Call:
         self.call_wait = call_wait  # Tempo de espera até um técnico atender o chamado
         self.start_time = 0.00  # Tempo em que o técnico começa a atender o chamado
         self.end_time = 0.00  # Tempo em que o chamado é fechado
+        self.call_title = call_title
 
     @staticmethod
     def format_time(env_time):
@@ -57,3 +58,7 @@ class Call:
         """
         yield self.env.timeout(resolve_time)
         self.end_time = self.env.now  # Registra o horário de término do chamado
+
+    def mark_unresolved(self):
+        """Marca o chamado como não resolvido."""
+        self.unresolved = True

@@ -59,3 +59,30 @@ def generate_technician_names(count=100):
         technicians.append((full_name, gender))  # Return the full name and gender as a tuple
     
     return technicians
+
+
+import random
+
+def generate_ticket_title():
+    # Problemas recorrentes em empresas
+    categories = [
+        "Reiniciar senha", "Problema de conexão com a internet", "Lentidão no sistema",
+        "Mouse não funciona", "Teclado com defeito", "Impressora sem papel", 
+        "Erro ao abrir programa", "Sistema operacional travando", "Atualização pendente",
+        "Problema na VPN", "E-mail corporativo inacessível", "Monitor não liga", 
+        "Configuração de software", "Solicitação de acesso a pastas", "Tela azul da morte",
+        "Erro de autenticação", "Problema com certificado digital", "Microfone não funciona",
+        "Câmera não é detectada", "Erro de rede local", "Computador não liga", 
+        "Driver desatualizado", "Solicitação de instalação de software", "Problema com backup",
+        "Erro no sistema de ponto eletrônico", "Conexão instável no Wi-Fi",
+        "Solicitação de troca de equipamento", "Problema com licenciamento de software",
+        "Solicitação de suporte remoto", "Erro de sincronização com o servidor",
+        "Som não está funcionando", "Erro ao imprimir documentos", "Falta de espaço no disco",
+        "Problema com o firewall", "Conexão lenta na videoconferência", 
+        "Erro ao salvar arquivos", "Solicitação de permissão de administrador",
+        "Mouse com duplo clique automático", "Teclado com teclas travadas",
+        "Problema com atualização de antivírus"
+    ]
+
+    # Escolhe e retorna um título aleatório da lista
+    return random.choice(categories)

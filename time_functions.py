@@ -31,8 +31,8 @@ def realistic_call_interval():
     Gera um intervalo de tempo realista entre a chegada de chamados.
     Combina distribuições exponenciais com um intervalo mínimo.
     """
-    min_interval = 3  # Intervalo mínimo de 3 segundos
-    interval = random.expovariate(1) * 10  # Média de 10 segundos
+    min_interval = 5  # Intervalo mínimo de 5 segundos
+    interval = random.expovariate(1) * 20  # Média de 20 segundos
     return max(min_interval, interval)  # Garante o intervalo mínimo
 
 

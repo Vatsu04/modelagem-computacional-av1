@@ -1,9 +1,11 @@
 import random
 import numpy as np
 import call as Call
+import math
 import technician as Technician
 from env import Environment  # Import your custom Environment class
-from name_generator import generate_ticket_opener_names, generate_technician_names
+from datetime import timedelta
+from name_generator import generate_ticket_opener_names, generate_technician_names, generate_ticket_title
 from time_functions import format_time, realistic_call_interval, realistic_resolution_time
 
 # Parâmetros da simulação
@@ -29,9 +31,10 @@ def call_generator(env, call_log, technician_pool):
         priority_level = random.randint(1, 4)  # Define uma prioridade aleatória para o chamado
         priority = ["Baixa", "Média", "Alta", "Crítica"][priority_level - 1]  # Traduz prioridade para texto
 
-        new_call = Call.Call(env, call_id, priority)  # Cria novo chamado
+        new_call = Call.Call(env, call_id, priority, generate_ticket_title() )  # Cria novo chamado
         call_log.append(new_call)  # Adiciona o chamado ao log
-        print(f"{format_time(env.now)}- Novo chamado criado com ID {call_id} e prioridade {priority} por {new_call.caller_name}.")
+        
+        print(f"{format_time(env.now)}- Novo chamado '{new_call.call_title}' criado com ID {call_id} e prioridade {priority} por {new_call.caller_name}.")
         
         # Processa a atribuição do chamado
         env.process(assign_call(env, new_call, technician_pool))
@@ -52,6 +55,7 @@ def assign_call(env, call, technician_pool):
         print(f"{format_time(env.now)}- Chamado {call.call_id} resolvido por {tecnico_ou_tecnica} {call.call_tech}.")
     else:
         print(f"{format_time(env.now)}- Chamado {call.call_id} aguardando técnico disponível.")
+    
 
 
 # Inicia o gerador de chamados
@@ -60,16 +64,23 @@ env.process(call_generator(env, call_log, technician_pool))
 # Executa a simulação
 env.run(until=SIM_DURATION)
 
+
+
 # Análise pós-simulação
-resolved_calls = [call for call in call_log if call.end_time is not None]
+resolved_calls = [call for call in call_log if call.start_time is not None and call.end_time is not None]
 average_response_time = np.mean(
     [(call.end_time - call.start_time) for call in resolved_calls]
 )
 
-from datetime import timedelta
-
 # Converte o tempo médio (em segundos) para o formato HH:MM:SS
-average_response_time_formatted = str(timedelta(seconds=average_response_time))
+average_response_time_rounded = math.ceil(average_response_time)  # Arredonda para o segundo mais próximo
+average_response_time_formatted = str(timedelta(seconds=average_response_time_rounded))
+
+# Remove o "-1 day" se ele aparecer devido a um cálculo incorreto
+if "-1 day" in average_response_time_formatted:
+    average_response_time_formatted = average_response_time_formatted.replace("-1 day, ", "")
+
+# Imprime os resultados formatados
 print("\n--- RESULTADOS DA SIMULAÇÃO ---")
 print(f"Tempo médio de resposta: {average_response_time_formatted}")
 print(f"Total de chamados resolvidos: {len(resolved_calls)}")
