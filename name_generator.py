@@ -39,7 +39,7 @@ def generate_technician_names(count=100):
         ("Taylor", "Female"), ("Morgan", "Male"), ("Casey", "Female"), ("Jamie", "Female"),
         ("Emily", "Female"), ("Michael", "Male"), ("Sarah", "Female"), ("David", "Male"),
         ("Ashley", "Female"), ("Gustavo", "Male"), ("Lucas", "Male"), ("Guilherme", "Male"), ("Sabrina", "Female"),
-        ("Hannibal", "Male")
+        ("Hannibal", "Male"), ("Samuel", "Male")
     ]
 
     last_names = [
