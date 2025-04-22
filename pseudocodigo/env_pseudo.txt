@@ -1,0 +1,11 @@
+IMPORTAR simpy 
+
+CLASSE Environment(simpy.Environment):
+    METODO CONSTRUTOR(self):
+        super().Environment()
+    FIM METODO CONSTRUTOR
+
+    METODO get_now(self);
+        RETORNAR self.now
+    FIM METODO
+
