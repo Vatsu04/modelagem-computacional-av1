@@ -7,7 +7,7 @@ def generate_ticket_opener_names(count=100):
         ("Alice", "Female"), ("Brian", "Male"), ("Clara", "Female"), ("Derek", "Male"), 
         ("Ella", "Female"), ("Felix", "Male"), ("Grace", "Female"), ("Hector", "Male"), 
         ("Ivy", "Female"), ("Jack", "Male"), ("Kara", "Female"), ("Leo", "Male"), 
-        ("Mona", "Female"), ("Nathan", "Male"), ("Olive", "Female"), ("Peter", "Male"), ("Momo", "Female"), ("Sana", "Female"), ("Chaeyoung", "Female"),
+        ("Mona", "Female"), ("Nathan", "Male"), ("Olive", "Female"), ("Peter", "Male"),
         ("Quincy", "Male"), ("Rachel", "Female"), ("Steve", "Male"), ("Tina", "Female"), ("Nayeon", "Female")
 
   
@@ -41,7 +41,6 @@ def generate_technician_names(count=100):
         ("Emily", "Female"), ("Michael", "Male"), ("Sarah", "Female"), ("David", "Male"), ("Rian", "Male"),
         ("Ashley", "Female"), ("Gustavo", "Male"), ("Lucas", "Male"), ("Guilherme", "Male"), ("Sabrina", "Female"), ("Caue", "Male"), ("Yone", "Female"),
         ("Hannibal", "Male"), ("Samuel", "Male"), ("Clarice", "Female"), ("Will", "Female"), ("Geraldo", "Male"), ("Eduardo", "Male"), ("Anna", "Female"), 
-        ("Lia", "Female"), ("Dahyun", "Female"), ("Tzuyu", "Female"), ("Mina", "Female"), ("Jeongyeon", "Female"), ("Fernanda", "Female")
     ]
 
     last_names = [
