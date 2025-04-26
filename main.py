@@ -12,8 +12,8 @@ from time_functions import format_time, realistic_call_interval, realistic_resol
 SIM_DURATION = 3600  # Duração da simulação (em segundos, equivalente a 1 hora)
 
 # Gera o diretório de técnicos e chamadores
-technicians = generate_technician_names(5)  # Simulando com 10 técnicos
-callers = generate_ticket_opener_names(10)  # Simulando com 100 chamadores
+technicians = generate_technician_names(8)  # Simulando com 6 técnicos
+callers = generate_ticket_opener_names(20)  # Simulando com 100 chamadores
 
 # Inicializa o ambiente do SimPy
 env = Environment()  # Using your custom Environment class

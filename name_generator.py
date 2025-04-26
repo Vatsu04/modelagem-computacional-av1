@@ -8,13 +8,14 @@ def generate_ticket_opener_names(count=100):
         ("Ella", "Female"), ("Felix", "Male"), ("Grace", "Female"), ("Hector", "Male"), 
         ("Ivy", "Female"), ("Jack", "Male"), ("Kara", "Female"), ("Leo", "Male"), 
         ("Mona", "Female"), ("Nathan", "Male"), ("Olive", "Female"), ("Peter", "Male"),
-        ("Quincy", "Male"), ("Rachel", "Female"), ("Steve", "Male"), ("Tina", "Female"), ("Nayeon", "Female")
+        ("Quincy", "Male"), ("Rachel", "Female"), ("Steve", "Male"), ("Tina", "Female"), ("Nayeon", "Female"), ("Momo", "Female"),
+        ("Jade", "Female"), ("Francielle", "Female"), ("Julia", "Femlae"), ("Jusleine", "Female"), ("Jessica", "Female"), ("Marcio", "Male")
 
   
     ]
 
     last_names = [
-        "Taylor", "Bishop", "Chavez", "Mendoza", "Fisher", "Patel", "Reed", "Hicks", "Myers", "Ford",
+        "da Silva", "Bishop", "Chavez", "Mendoza", "Fisher", "Patel", "Reed", "Hicks", "Myers", "Ford",
         "Cruz", "Morales", "Stewart", "Diaz", "Rogers", "Reyes", "Edwards", "Carter", "Collins", "Murphy",
         "Bell", "Gutierrez", "Bailey", "Cooper", "Richardson", "Howard", "Ward", "Cox", "Torres", "Peterson",
         "Gray", "Ramsey", "Sanders", "Price", "Bennett", "Wood", "Barnes", "Ross", "Henderson", "Coleman",
@@ -37,7 +38,7 @@ def generate_technician_names(count=100):
     # Define first names with associated genders
     first_names = [
         ("John", "Male"), ("Jane", "Female"), ("Alex", "Male"), ("Chris", "Male"), 
-        ("Taylor", "Female"), ("Morgan", "Male"), ("Casey", "Female"), ("Jamie", "Female"),
+        ("Maria", "Female"), ("Morgan", "Male"), ("Casey", "Female"), ("Jamie", "Female"),
         ("Emily", "Female"), ("Michael", "Male"), ("Sarah", "Female"), ("David", "Male"), ("Rian", "Male"),
         ("Ashley", "Female"), ("Gustavo", "Male"), ("Lucas", "Male"), ("Guilherme", "Male"), ("Sabrina", "Female"), ("Caue", "Male"), ("Yone", "Female"),
         ("Hannibal", "Male"), ("Samuel", "Male"), ("Clarice", "Female"), ("Will", "Female"), ("Geraldo", "Male"), ("Eduardo", "Male"), ("Anna", "Female"), 
@@ -49,7 +50,7 @@ def generate_technician_names(count=100):
     "Perez", "Thompson", "White", "Harris", "Sanchez", "Clark", "Ramirez", "Lewis", "Robinson", "Walker",
     "Young", "Allen", "King", "Wright", "Scott", "Torres", "Nguyen", "Hill", "Flores", "Green", "Adams", 
     "Tascheri", "Suares", "Afton", "Lecter", "Graham", "Brito", "Coutinho", "do Valle", "Kennedy", "Teske", "Alves", "Lima", "Melo", "Pereira", "Moreira", "Teixeira", "Almeida", "Silva", "Oliveira", "Souza",
-    "Ferreira", "Pinto", "Lima", "Rocha", "Carvalho", "Barbosa", "Rezende", "Montenegro", "Batista", "Vasquez", "Campos", "Ramos", "Vieira"
+    "Ferreira", "Pinto", "Lima", "Rocha", "Carvalho", "Barbosa", "Rezende", "Montenegro", "Batista", "Vasquez", "Campos", "Ramos", "Vieira", "Dantas", "Medeiros", "Cavalcante", "Lacerda", "Santos", "Nunes", "Pereira", "Almeida", "Barbosa", "Carvalho", "Silva", "Oliveira", "Souza", "Ferreira", "Pinto", "Lima", "Rocha"
 ]
 
     technicians = []
