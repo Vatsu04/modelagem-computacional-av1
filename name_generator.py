@@ -7,7 +7,7 @@ def generate_ticket_opener_names(count=100):
         ("Alice", "Female"), ("Brian", "Male"), ("Clara", "Female"), ("Derek", "Male"), 
         ("Ella", "Female"), ("Felix", "Male"), ("Grace", "Female"), ("Hector", "Male"), 
         ("Ivy", "Female"), ("Jack", "Male"), ("Kara", "Female"), ("Leo", "Male"), 
-        ("Mona", "Female"), ("Nathan", "Male"), ("Olive", "Female"), ("Peter", "Male"), 
+        ("Mona", "Female"), ("Nathan", "Male"), ("Olive", "Female"), ("Peter", "Male"), ("Momo", "Female"), ("Sana", "Female"), ("Chaeyoung", "Female"),
         ("Quincy", "Male"), ("Rachel", "Female"), ("Steve", "Male"), ("Tina", "Female"), ("Nayeon", "Female")
 
   
@@ -38,9 +38,10 @@ def generate_technician_names(count=100):
     first_names = [
         ("John", "Male"), ("Jane", "Female"), ("Alex", "Male"), ("Chris", "Male"), 
         ("Taylor", "Female"), ("Morgan", "Male"), ("Casey", "Female"), ("Jamie", "Female"),
-        ("Emily", "Female"), ("Michael", "Male"), ("Sarah", "Female"), ("David", "Male"),
-        ("Ashley", "Female"), ("Gustavo", "Male"), ("Lucas", "Male"), ("Guilherme", "Male"), ("Sabrina", "Female"),
-        ("Hannibal", "Male"), ("Samuel", "Male"), ("Clarice", "Female"), ("Will", "Female"), ("Geraldo", "Male")
+        ("Emily", "Female"), ("Michael", "Male"), ("Sarah", "Female"), ("David", "Male"), ("Rian", "Male"),
+        ("Ashley", "Female"), ("Gustavo", "Male"), ("Lucas", "Male"), ("Guilherme", "Male"), ("Sabrina", "Female"), ("Caue", "Male"), ("Yone", "Female"),
+        ("Hannibal", "Male"), ("Samuel", "Male"), ("Clarice", "Female"), ("Will", "Female"), ("Geraldo", "Male"), ("Eduardo", "Male"), ("Anna", "Female"), 
+        ("Lia", "Female"), ("Dahyun", "Female"), ("Tzuyu", "Female"), ("Mina", "Female"), ("Jeongyeon", "Female"), ("Fernanda", "Female")
     ]
 
     last_names = [
@@ -48,7 +49,8 @@ def generate_technician_names(count=100):
     "Lopez", "Gonzalez", "Wilson", "Anderson", "Thomas", "Taylor", "Moore", "Jackson", "Martin", "Lee",
     "Perez", "Thompson", "White", "Harris", "Sanchez", "Clark", "Ramirez", "Lewis", "Robinson", "Walker",
     "Young", "Allen", "King", "Wright", "Scott", "Torres", "Nguyen", "Hill", "Flores", "Green", "Adams", 
-    "Tascheri", "Suares", "Afton", "Lecter", "Graham", "Brito", "Coutinho", "do Valle", "Kennedy", "Teske"
+    "Tascheri", "Suares", "Afton", "Lecter", "Graham", "Brito", "Coutinho", "do Valle", "Kennedy", "Teske", "Alves", "Lima", "Melo", "Pereira", "Moreira", "Teixeira", "Almeida", "Silva", "Oliveira", "Souza",
+    "Ferreira", "Pinto", "Lima", "Rocha", "Carvalho", "Barbosa", "Rezende", "Montenegro", "Batista", "Vasquez", "Campos", "Ramos", "Vieira"
 ]
 
     technicians = []
