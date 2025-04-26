@@ -1,7 +1,37 @@
+DE datetime IMPORTAR datetime, timedelta
+
 CLASSE Technician
-    METODO CONSTRUTOR Technician(self, name, id):
-        self.tech_name <- name // Nome Tecnico
-        self.tech_id <- id // Id Tecnico
-        self.busy <- Falso // Disponibilidade do Tecnico
-        self.current_call = Nulo // Chamado atual 
-        self.calls <- [] // Lista dos chamados que o tecnico atendeu
+    VARIAVEL technician_id_counter <- 0
+
+    METODO CONSTRUTOR Technician(self, env, technician_data):
+        Technician.technician_id_counter <- Technician.technician_id_counter + 1
+        self.tech_name, self.gender <- technician_data 
+        self.technician_id <- technician_id_counter
+        self.env <- env 
+        self.busy <- FALSO 
+        self.current_call <- NULO 
+        self.start_time <- datetime.now()
+    FIM METODO CONSTRUTOR
+
+    @metodoEstatico
+    METODO format_time(env_time):
+        VARIAVEL current_time <- datetime.now()
+        VARIAVEL simulation_time <- current_time + timedelta(seconds <- env_time)
+        RETORNAR simulation_time.strftime("%H:%M:%S")
+    FIM METODO
+
+    METODO work_on_call(self, call, resolve_time):
+        self.busy <- VERDADEIRO 
+        self.current_call <- call
+        VARIAVEL tecnico_ou_tecnica <- "Técnica" SE self.gender <- "Female" SENAO "Técnico"
+        
+        ESCREVA(self.format_time(self.env.now) + " - " + tecnico_ou_tecnica + " " + self.tech_name + " começou a trabalhar no chamado " + call.call_id)
+        
+        yield self.env.timeout(resolve_time)
+
+        ESCREVA(self.format_time(self.env.now) + " - " + tecnico_ou_tecnica + " " + self.tech_name + " finalizou o chamado " + self.call_id)
+
+        self.busy <- FALSO 
+    FIM METODO
+
+FIM CLASSE

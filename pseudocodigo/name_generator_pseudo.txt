@@ -1,0 +1,83 @@
+IMPORTAR random 
+
+METODO generate_ticket_opener_names(VARIAVEL count <- 100):
+    VARIAVEL ARRAY first_names <- [
+        ("Alice", "Female"), ("Brian", "Male"), ("Clara", "Female"), ("Derek", "Male"), 
+        ("Ella", "Female"), ("Felix", "Male"), ("Grace", "Female"), ("Hector", "Male"), 
+        ("Ivy", "Female"), ("Jack", "Male"), ("Kara", "Female"), ("Leo", "Male"), 
+        ("Mona", "Female"), ("Nathan", "Male"), ("Olive", "Female"), ("Peter", "Male"), 
+        ("Quincy", "Male"), ("Rachel", "Female"), ("Steve", "Male"), ("Tina", "Female"), ("Nayeon", "Female")
+    ]
+    
+    VARIAVEL ARRAY last_names <- [
+        "Taylor", "Bishop", "Chavez", "Mendoza", "Fisher", "Patel", "Reed", "Hicks", "Myers", "Ford",
+        "Cruz", "Morales", "Stewart", "Diaz", "Rogers", "Reyes", "Edwards", "Carter", "Collins", "Murphy",
+        "Bell", "Gutierrez", "Bailey", "Cooper", "Richardson", "Howard", "Ward", "Cox", "Torres", "Peterson",
+        "Gray", "Ramsey", "Sanders", "Price", "Bennett", "Wood", "Barnes", "Ross", "Henderson", "Coleman",
+        "Jenkins", "Perry", "Powell", "Long", "Patterson", "Hughes", "Flores", "Washington", "Butler", "Simmons",
+        "Foster", "Gonzales", "Bryant", "Alexander", "Russell", "Griffin", "Hayes", "Chapman", "Webb", "West",
+        "Pereira", "Moreira", "Teixeira", "Almeida", "Silva", "Oliveira", "Souza", "Ferreira", "Pinto", "Lima",
+        "Rocha", "Carvalho", "Barbosa", "Rezende", "Montenegro", "Batista", "Vasquez", "Campos", "Ramos", "Vieira"
+    ]
+    
+    VARIAVEL ARRAY openers <- []
+    
+    PARA i <- 0 ATE range(count):
+        first_name, gender <- random.choice(first_names)
+        last_name <- random.(last_names)
+        openers.append((first_name + " " + last_name, gender))
+    FIM PARA
+    RETORNAR openers
+
+FIM METODO
+
+
+METODO generate_technician_names(count <- 100):
+    VARIAVEL ARRAY first_names <-  [
+        ("John", "Male"), ("Jane", "Female"), ("Alex", "Male"), ("Chris", "Male"), 
+        ("Taylor", "Female"), ("Morgan", "Male"), ("Casey", "Female"), ("Jamie", "Female"),
+        ("Emily", "Female"), ("Michael", "Male"), ("Sarah", "Female"), ("David", "Male"),
+        ("Ashley", "Female"), ("Gustavo", "Male"), ("Lucas", "Male"), ("Guilherme", "Male"), ("Sabrina", "Female"),
+        ("Hannibal", "Male"), ("Samuel", "Male"), ("Clarice", "Female"), ("Will", "Female"), ("Geraldo", "Male")
+    ]
+
+    VARIAVEL ARRAY last_names <-  [
+        "Smith", "Johnson", "Brown", "Williams", "Jones", "Garcia", "Miller", "Davis", "Martinez", "Hernandez",
+        "Lopez", "Gonzalez", "Wilson", "Anderson", "Thomas", "Taylor", "Moore", "Jackson", "Martin", "Lee",
+        "Perez", "Thompson", "White", "Harris", "Sanchez", "Clark", "Ramirez", "Lewis", "Robinson", "Walker",
+        "Young", "Allen", "King", "Wright", "Scott", "Torres", "Nguyen", "Hill", "Flores", "Green", "Adams", 
+        "Tascheri", "Suares", "Afton", "Lecter", "Graham", "Brito", "Coutinho", "do Valle", "Kennedy", "Teske"
+    ]
+
+    VARIAVEL ARRAY technicians <- []
+
+    PARA i <- 0 ATE range(count):
+        first_name, gender <- random.choice(first_names)
+        last_name <- random.choice(last_name)
+        technicians.append((first_name + " " + last_name, gender))
+    FIM PARA
+
+    RETORNAR technicians
+FIM METODO
+
+METODO generate_ticket_title():
+    VARIAVEL ARRAY categories <- [
+        "Reiniciar senha", "Problema de conexão com a internet", "Lentidão no sistema",
+        "Mouse não funciona", "Teclado com defeito", "Impressora sem papel", 
+        "Erro ao abrir programa", "Sistema operacional travando", "Atualização pendente",
+        "Problema na VPN", "E-mail corporativo inacessível", "Monitor não liga", 
+        "Configuração de software", "Solicitação de acesso a pastas", "Tela azul da morte",
+        "Erro de autenticação", "Problema com certificado digital", "Microfone não funciona",
+        "Câmera não é detectada", "Erro de rede local", "Computador não liga", 
+        "Driver desatualizado", "Solicitação de instalação de software", "Problema com backup",
+        "Erro no sistema de ponto eletrônico", "Conexão instável no Wi-Fi",
+        "Solicitação de troca de equipamento", "Problema com licenciamento de software",
+        "Solicitação de suporte remoto", "Erro de sincronização com o servidor",
+        "Som não está funcionando", "Erro ao imprimir documentos", "Falta de espaço no disco",
+        "Problema com o firewall", "Conexão lenta na videoconferência", 
+        "Erro ao salvar arquivos", "Solicitação de permissão de administrador",
+        "Mouse com duplo clique automático", "Teclado com teclas travadas",
+        "Problema com atualização de antivírus"
+    ]
+    RETORNAR random.choice(categories)
+FIM METODO

@@ -1,24 +1,68 @@
-IMPORTAR env COMO env
+IMPORTAR env COMO Env
+DE datetime IMPORTAR datetime, timedelta
+DE name_generator IMPORTAR generate_ticket_opener_names
+IMPORTAR random
 
 Classe Call:
     VARIAVEL call_id_counter <- 0
+    VARIAVEL caller_data <- generate_ticket_opener_names(100)
 
-    METODO CONSTRUTOR Call(env, call_type, call_wait):
+    METODO CONSTRUTOR Call(self, env, call_type, call_wait):
         self.env <- env
-        Call.call_id_counter <- Call.call_id_counter + 1 // ID Chamado
-        self.call_id <- Call.call_id_counter 
-        self.call_tech <- self.define_tech() // Pega o ID do tecnico
-        self.call_time <- env.now() // Tempo criação do chamado 
-        self.call_type <- call_type // Tipo de chamado
-        self.call_wait <- call_wait // Tempo de achar um técnico disponível
-        self.start_time <- env.now // Tempo de espera para atender o chamado
-        self.end_time <- Nulo
+        Call.call_id_counter <- Call.call_id_counter + 1 
+        self.call_id <- Call.call_id_counter
+        self.caller_name, self.caller_gender <- random.choice(Call.caller_data)
+        self.call_tech <- NULO
+        self.call_time <- self.format_time(env.now)
+        self.call_type <- call_type
+        self.call_wait <- call_wait
+        self.start_time <- 0.00
+        self.end_time <- 0.00
+        self.call_title <- call_title
+        self.deadline <- self.definir_prazo()
+        self.unresolved <- FALSO
+        self.tech_responsavel <- FALSO
+
     FIM METODO CONSTRUTOR
     
-    METODO close(self)
+    @metodoEstatico
+    METODO format_time(env_time):
+        VARIAVEL current_time <- datetime.now()
+        VARIAVEL <- simulation_time <- current_time + timedelta(seconds <- env_time)
+        RETORNAR simulation_time.strftime("%H:%M:%S")
+    FIM METODO
+
+    METODO assign_tech(self, technician):
+        self.call_tech <- technician.tech_name
+        self.start_time <- self.env.now
+    FIM METODO
+
+    METODO close(self):
+        self.end_time <- self.env.now
+    FIM METODO
+
+    METODO resolve(self, resolve_time):
+        yield self.env.timeout(resolve_time)
         self.end_time <- self.env.now
     FIM METODO
     
-    METODO define_tech(self, id):
-        RETORNA env.technicians[id].tech_name // Retorna o nome do tecnico de acordo com o ID dele.
+    METODO mark_unresolved(self):
+        self.unresolved = VERDADEIRO
     FIM METODO
+
+    METODO definir_prazo(self):
+        SE self.call_type <- "Baixa":
+            RETORNAR random.randint(3600, 7200)
+        SENAO SE self.call_type <- "Média"
+            RETORNAR random.randint(1800, 3600)
+        SENAO SE self.call_type <- "Alta"
+            RETORNAR random.randint(900, 1800)
+        SENAO 
+            RETONAR random.randint(600, 900)
+    FIM METODO
+
+    METODO definir_tecnico(self):
+        self.tech_responsavel <- VERDADEIRO
+        RETONAR self.tech_responsavel
+    FIM METODO
+FIM CLASSE

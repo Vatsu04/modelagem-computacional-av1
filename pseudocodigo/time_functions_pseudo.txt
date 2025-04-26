@@ -1,0 +1,48 @@
+IMPORTAR random
+DE datetime IMPORTAR datetime, timedelta
+
+CONSTANTE CURRENT_TIME <- datetime.now().replace(second <- 0, microsecond <- 0)
+
+METODO format_time(env_time):
+    VARIAVEL simulation_time <- CURRENT_TIME + timedelta(seconds <- env_time)
+    RETORNAR simulation_time.strftime("%H:%M:%S")
+FIM METODO
+
+METODO dynamic_call_arrival_rate(env_time):
+    SE 0 <= env.time % 1440 < 480:
+        RETORNAR 0.2
+    SENAO SE 480 <= env_time % 1440 < 960:
+        RETORNAR 2
+    SENAO
+        RETORNAR 0.8
+    FIM SE
+FIM METODO
+
+METODO realistic_call_interval():
+    VARIAVEL min_interval <- 50
+    VARIAVEL interval <- random.expovariate(1 / 60)
+    RETORNAR max(min_interval, interval)
+FIM METODO
+
+METODO realistic_resolution_time(priority):
+    SENAO priority == "Baixa":
+        mean, std_dev <- 240, 45  
+    SENAO SE priority == "Média":
+        mean, std_dev <- 180, 30  
+    SENAO SE priority == "Alta":
+        mean, std_dev <- 120, 20 
+    SENAO SE priority == "Crítica":
+        mean, std_dev <- 90, 15   
+    SENAO:
+        mean, std_dev = 240, 45  
+    FIM SE
+    return max(60, random.gauss(mean, std_dev)) 
+FIM METODO
+
+METODO technician_rest_time():
+    VARIAVEL rest_time <- random.uniform(60, 180)
+    RETORNAR rest_time
+FIM METODO
+
+
+
