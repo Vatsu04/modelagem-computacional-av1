@@ -1,12 +1,12 @@
-IMPORTAR random
 IMPORTAR numpy COMO np
-IMPORTAR call COMO Call
 IMPORTAR math
-IMPORTAR technician COMO Technician
-DE env IMPORTAR Environment
+IMPORTAR Functions.simulation COMO Simulation
+IMPORTAR Functions.technician COMO Technician
+DE Functions.env IMPORTAR Environment 
 DE datetime IMPORTAR timedelta
-DE name_generator IMPORTAR generate_ticket_opener_names, generate_technician_names, generate_ticket_title
-DE time_functions IMPORTAR format_time, realistic_call_interval, realistic_resolution_time
+DE Functions.name_generator IMPORTAR generate_ticket_opener_names, generate_technician_names, generate_ticket_title
+DE Functions.time_functions IMPORTAR format_time, realistic_call_interval, realistic_resolution_time
+
 
 CONSTANTE SIM_DURATION <- 3600
 
@@ -17,46 +17,6 @@ VARIAVEL env <- Environment()
 VARIAVEL ARRAY technician_pool <- [Technician.Technician(env, tech) PARA tech EM technicians]
 VARIAVEL ARRAY call_log <- []
 
-METODO call_generator(env, call_log, technician_pool):
-    VARIAVEL call_id <- 0
-    ENQUANTO VERDADEIRO: 
-        yield env.timeout(realistic_call_interval())
-        call_id <- call_id + 1
-        
-        VARIAVEL ARRAY population <- [1, 2, 3, 4]
-        VARIAVEL ARRAY weights <- [4, 3, 2, 1]
-        VARIAVEL priority_level <- random.choices(population, weights, k <- 1)[0]
-        VARIAVEL ARRAY priority <- ["Baixa", "Média", "Alta", "Crítica"][priority_level - 1]
-
-        VARIAVEL new_call <- Call.Call(env, call_id, priority, generate_ticket_title())
-        call_log.append(new_call)
-
-        ESCREVA(format_time(env.now) + " - Novo chamado " + new_call.call_title + " criado com ID: " + call_id + 
-        " e prioridade: " + priority + " por: " new_call.caller_name")
-        env.process(assign_call(env, new_call, technician_pool))
-    FIM ENQUANTO
-FIM METODO
-
-METODO assign_call(env, call, technician_pool)
-    ENQUANTO VERDADEIRO: 
-        VARIAVEL available_tech <- next((tech PARA tech EM technician_pool SE (!tech_busy), Nulo))
-        SE available_tech:
-            call.assign_call(available_tech)
-            VARIAVEL resolve_time <- realistic_resolution_time(call.call_type)
-            env.process(available_tech.work_on_call(call, resolve_time))
-            yield env.process(call.resolve(resolve_time))
-            RETORNAR 
-        FIM SE
-
-        SE env.now >= call.deadline:
-            call.mark_unresolved()
-            ESCREVA(format_time(env.now) + " - Chamado " + call.call_id + " expirou e não foi resolvido.")
-            RETORNAR
-        FIM SE
-
-        yield env.timeout(5)
-    FIM ENQUANTO
-FIM METODO
 
 env.process(call_generator(env, call_log, technician_pool))
 env.run(until <- SIM_DURATION)

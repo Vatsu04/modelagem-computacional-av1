@@ -1,6 +1,6 @@
-IMPORTAR env COMO Env
+IMPORTAR Functions.env COMO Env
 DE datetime IMPORTAR datetime, timedelta
-DE name_generator IMPORTAR generate_ticket_opener_names
+DE Functions.name_generator IMPORTAR generate_ticket_opener_names
 IMPORTAR random
 
 Classe Call:
