@@ -7,8 +7,6 @@ from datetime import timedelta
 from Functions.name_generator import generate_ticket_opener_names, generate_technician_names, generate_ticket_title
 from Functions.time_functions import format_time, realistic_call_interval, realistic_resolution_time
 
-
-
 # Parâmetros da simulação
 SIM_DURATION = 3600  # Duração da simulação (em segundos, equivalente a 1 hora)
 
@@ -20,10 +18,6 @@ callers = generate_ticket_opener_names(30)  # Simulando com 30 chamadores
 env = Environment()  # Using your custom Environment class
 technician_pool = [Technician.Technician(env, tech) for tech in technicians]  # Cria um pool de técnicos
 call_log = []  # Lista para registrar os chamados
-
-
-# Processo para gerar chamados
-
 
 
 # Inicia o gerador de chamados
