@@ -1,19 +1,22 @@
+
 import random
 import numpy as np
-import call as Call
+import Functions.call as Call
 import math
-import technician as Technician
-from env import Environment  # Import your custom Environment class
+import Functions.technician as Technician
+from Functions.env import Environment  # Import your custom Environment class
 from datetime import timedelta
-from name_generator import generate_ticket_opener_names, generate_technician_names, generate_ticket_title
-from time_functions import format_time, realistic_call_interval, realistic_resolution_time
+from Functions.name_generator import generate_ticket_opener_names, generate_technician_names, generate_ticket_title
+from Functions.time_functions import format_time, realistic_call_interval, realistic_resolution_time
+
+
 
 # Parâmetros da simulação
 SIM_DURATION = 3600  # Duração da simulação (em segundos, equivalente a 1 hora)
 
 # Gera o diretório de técnicos e chamadores
-technicians = generate_technician_names(8)  # Simulando com 6 técnicos
-callers = generate_ticket_opener_names(20)  # Simulando com 100 chamadores
+technicians = generate_technician_names(8)  # Simulando com 8 técnicos
+callers = generate_ticket_opener_names(30)  # Simulando com 30 chamadores
 
 # Inicializa o ambiente do SimPy
 env = Environment()  # Using your custom Environment class

@@ -1,6 +1,6 @@
-import env as Env
+import Functions.env as Env
 from datetime import datetime, timedelta
-from name_generator import generate_ticket_opener_names
+from Functions.name_generator import generate_ticket_opener_names
 import random
 
 
