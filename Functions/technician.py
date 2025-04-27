@@ -41,5 +41,6 @@ class Technician:
         tecnico_ou_tecnica = "Técnica" if self.gender == "Female" else "Técnico"
         print(f"{self.format_time(self.env.now)}- {tecnico_ou_tecnica} {self.tech_name} começou a trabalhar no chamado {call.call_id}")
         yield self.env.timeout(resolve_time)  # Aguarda o tempo necessário para resolver o chamado
+        print(f"{self.format_time(self.env.now)}- Chamado {call.call_id} expirou e não foi resolvido.")
         print(f"{self.format_time(self.env.now)}- {tecnico_ou_tecnica} {self.tech_name} finalizou o chamado {call.call_id}")
         self.busy = False  # Marca o técnico como disponível novamente

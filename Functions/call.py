@@ -26,7 +26,7 @@ class Call:
         self.start_time = 0.00  # Tempo em que o técnico começa a atender o chamado
         self.end_time = 0.00  # Tempo em que o chamado é fechado
         self.call_title = call_title # Título do chamado
-        self.deadline =  self.definir_prazo() #Prazo de atendimento (3 a 40 minutos) 
+        self.deadline =  self.definir_prazo(env) #Prazo de atendimento (3 a 40 minutos) 
         self.unresolved = False  # Indica se o chamado foi resolvido ou não
         self.tech_responsavel = False # Indica se um chamado foi atribuído a um técnico
 
@@ -66,18 +66,18 @@ class Call:
         """Marca o chamado como não resolvido."""
         self.unresolved = True
     
-    def definir_prazo(self):
+    def definir_prazo(self, env):
         """
         Define o prazo de atendimento do chamado baseado na prioridade.
         """
         if self.call_type == "Baixa":
-            return random.randint(3600, 7200)  # 1 a 2 horas
+            return env.now + random.randint(1200, 2400)  # 20 a 40 minutos
         elif self.call_type == "Média":
-            return random.randint(1800, 3600)  # 30 minutos a 1 hora
+            return env.now + random.randint(900, 1800)  # 15 a 30 minutos
         elif self.call_type == "Alta":
-            return random.randint(900, 1800)  # 15 a 30 minutos
+            return env.now + random.randint(300, 900)  # 5 a 15 minutos
         else:  # Crítica
-            return random.randint(600, 900)  # 10 a 15 minutos
+            return env.now + random.randint(180, 600)  # 3 a 10 minutos
     
     def definir_tecnico(self):
         """

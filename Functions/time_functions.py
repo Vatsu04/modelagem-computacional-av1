@@ -43,11 +43,11 @@ def realistic_resolution_time(priority):
     :return: Tempo de resolução em segundos.
     """
     if priority == "Baixa":
-        mean, std_dev = 240, 45  # Média de 4 minutos
+        mean, std_dev = 300, 45  # Média de 4 minutos
     elif priority == "Média":
-        mean, std_dev = 180, 30  # Média de 3 minutos
+        mean, std_dev = 240, 30  # Média de 3 minutos
     elif priority == "Alta":
-        mean, std_dev = 120, 20  # Média de 2 minutos
+        mean, std_dev = 180, 20  # Média de 2 minutos
     elif priority == "Crítica":
         mean, std_dev = 90, 15   # Média de 1,5 minuto
     else:

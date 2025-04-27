@@ -11,7 +11,6 @@ def generate_ticket_opener_names(count=100):
         ("Quincy", "Male"), ("Rachel", "Female"), ("Steve", "Male"), ("Tina", "Female"), ("Nayeon", "Female"), ("Momo", "Female"),
         ("Jade", "Female"), ("Francielle", "Female"), ("Julia", "Femlae"), ("Jusleine", "Female"), ("Jessica", "Female"), ("Marcio", "Male")
 
-  
     ]
 
     last_names = [
